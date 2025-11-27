@@ -1,0 +1,135 @@
+using System;
+ 
+class Program
+{
+    static void Main(string[] args)
+    {
+        bool run = true;
+ 
+        while (run)
+        {
+            Console.WriteLine("=== Algorithm Questions - Odev 1 ===");
+            Console.WriteLine("1 - Print even numbers");
+            Console.WriteLine("2 - Print numbers equal to m or divisible by m");
+            Console.WriteLine("3 - Print words in reverse order");
+            Console.WriteLine("4 - Count words and letters in a sentence");
+            Console.WriteLine("0 - Exit");
+            Console.Write("Your choice: ");
+            string choice = Console.ReadLine();
+            Console.WriteLine();
+ 
+            switch (choice)
+            {
+                case "1":
+                    Question1();
+                    break;
+                case "2":
+                    Question2();
+                    break;
+                case "3":
+                    Question3();
+                    break;
+                case "4":
+                    Question4();
+                    break;
+                case "0":
+                    run = false;
+                    Console.WriteLine("Exiting program...");
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Try again.");
+                    break;
+            }
+ 
+            Console.WriteLine();
+        }
+    }
+ 
+    // 1) Print even numbers
+    static void Question1()
+    {
+        Console.Write("Enter a positive number (n): ");
+        int n = int.Parse(Console.ReadLine());
+ 
+        int[] numbers = new int[n];
+ 
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write("Enter number " + (i + 1) + ": ");
+            numbers[i] = int.Parse(Console.ReadLine());
+        }
+ 
+        Console.WriteLine("\nEven numbers:");
+        foreach (int num in numbers)
+        {
+            if (num % 2 == 0)
+                Console.WriteLine(num);
+        }
+    }
+ 
+    // 2) Print numbers equal to m or divisible by m
+    static void Question2()
+    {
+        Console.Write("Enter number count (n): ");
+        int n = int.Parse(Console.ReadLine());
+ 
+        Console.Write("Enter divisor (m): ");
+        int m = int.Parse(Console.ReadLine());
+ 
+        int[] numbers = new int[n];
+ 
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write("Enter number " + (i + 1) + ": ");
+            numbers[i] = int.Parse(Console.ReadLine());
+        }
+ 
+        Console.WriteLine("\nNumbers equal to m or divisible by m:");
+        foreach (int num in numbers)
+        {
+            if (num == m || num % m == 0)
+                Console.WriteLine(num);
+        }
+    }
+ 
+    // 3) Print words in reverse order
+    static void Question3()
+    {
+        Console.Write("Enter how many words (n): ");
+        int n = int.Parse(Console.ReadLine());
+ 
+        string[] words = new string[n];
+ 
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write("Enter word " + (i + 1) + ": ");
+            words[i] = Console.ReadLine();
+        }
+ 
+        Console.WriteLine("\nWords reversed:");
+        for (int i = n - 1; i >= 0; i--)
+        {
+            Console.WriteLine(words[i]);
+        }
+    }
+ 
+    // 4) Count words and letters in a sentence
+    static void Question4()
+    {
+        Console.Write("Enter a sentence: ");
+        string sentence = Console.ReadLine();
+ 
+        string[] words = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        int wordCount = words.Length;
+ 
+        int letterCount = 0;
+        foreach (char c in sentence)
+        {
+            if (char.IsLetter(c))
+                letterCount++;
+        }
+ 
+        Console.WriteLine("\nWord count: " + wordCount);
+        Console.WriteLine("Letter count: " + letterCount);
+    }
+}
